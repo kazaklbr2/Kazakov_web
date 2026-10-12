@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Скриншоты — лабораторная работа № 1</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <!-- Шапка страницы и кнопки открытия нужной формы. -->
+  <header class="header container">
+    <a class="logo" href="index.html" aria-label="Скриншоты — главная страница">
+      <img src="assets/images/logo.svg" width="40" height="40" alt="">
+      <span class="logo-text">Скриншоты</span>
+    </a>
+    <nav class="auth-links" aria-label="Вход и регистрация">
+      <button class="text-button" type="button" data-open-form="register">Регистрация</button>
+      <button class="text-button" type="button" data-open-form="login">Вход</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="gallery-heading">
+      <h1>Июль, 2022</h1>
+      <!-- Добавление скриншотов относится к следующим лабораторным. -->
+      <button class="add-button" type="button" disabled aria-label="Добавить скриншот">
+        <img src="assets/images/plus.svg" width="20" height="20" alt="">
+        <span class="add-text">Добавить скриншот</span>
+      </button>
+    </div>
+
+    <!-- Статические карточки: изображение и дата, как в макете. -->
+    <section class="cards" aria-label="Общедоступные скриншоты">
+      <article class="card">
+        <img src="assets/images/dunes.png" alt="Песчаные дюны">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/marble.png" alt="Абстрактные бирюзовые разводы">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/portrait.png" alt="Портрет в раме">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/abstract.png" alt="Синие и красные абстрактные волны">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/statue.png" alt="Мраморная скульптура">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/face.png" alt="Рисунок лица с голубыми глазами">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/metal.png" alt="Свет на металлической поверхности">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/pencils.png" alt="Цветные карандаши">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/castle.png" alt="Картина с замком">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/flowers.png" alt="Цветочный натюрморт">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/graffiti.png" alt="Разноцветное граффити">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+      <article class="card">
+        <img src="assets/images/colors.png" alt="Разноцветные вертикальные полосы">
+        <time datetime="2022-08-15"><span class="date-prefix">Добавлено </span><img class="clock" src="assets/images/clock.svg" width="12" height="12" alt="">15 августа</time>
+      </article>
+    </section>
+    <!-- Пока нужна только вёрстка кнопки, без AJAX-подгрузки. -->
+    <button class="more-button" type="button" disabled><img src="assets/images/arrow.svg" width="20" height="20" alt=""> Показать еще</button>
+  </main>
+
+  <footer class="footer container">
+    <a href="mailto:info@gmail.com">info@gmail.com</a>
+    <span>Информация о разработчике</span>
+  </footer>
+
+  <!-- dialog сам удерживает фокус внутри открытого модального окна. -->
+  <dialog class="modal" id="auth-modal" aria-label="Вход и регистрация">
+    <div class="modal-content">
+      <button class="close-button" type="button" aria-label="Закрыть окно"><img src="assets/images/close.svg" width="20" height="20" alt=""></button>
+      <div class="form-switch" aria-label="Выбор формы">
+        <button class="text-button" type="button" data-switch-form="register">Регистрация</button>
+        <button class="text-button" type="button" data-switch-form="login">Авторизация</button>
+      </div>
+
+      <!-- novalidate позволяет вывести свои сообщения под всеми полями. -->
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label class="visually-hidden" for="register-name">Имя</label>
+          <input id="register-name" name="name" type="text" placeholder="Ваше имя" autocomplete="name" required aria-describedby="name-error">
+          <small class="error" id="name-error"></small>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="register-email">E-mail</label>
+          <input id="register-email" name="email" type="email" placeholder="Email" autocomplete="email" required aria-describedby="email-error">
+          <small class="error" id="email-error"></small>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="register-phone">Мобильный телефон</label>
+          <input id="register-phone" name="phone" type="tel" placeholder="Мобильный телефон" autocomplete="tel" required aria-describedby="phone-error">
+          <small class="error" id="phone-error"></small>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="register-password">Пароль</label>
+          <input id="register-password" name="password" type="password" placeholder="Пароль" autocomplete="new-password" required minlength="6" aria-describedby="password-error">
+          <small class="error" id="password-error"></small>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="register-repeat">Повторите пароль</label>
+          <input id="register-repeat" name="passwordRepeat" type="password" placeholder="Повторите пароль" autocomplete="new-password" required aria-describedby="repeat-error">
+          <small class="error" id="repeat-error"></small>
+        </div>
+        <div class="consent-field">
+          <label class="consent-label">
+            <input name="consent" type="checkbox" required aria-describedby="consent-error">
+            <span>Согласен на обработку <a href="http://slavdom10.dev.skillum.ru/law/" target="_blank" rel="noopener noreferrer">персональных данных</a></span>
+          </label>
+          <small class="error" id="consent-error"></small>
+        </div>
+        <button class="submit-button" type="submit" disabled>Зарегистрироваться</button>
+        <p class="form-hint"><img src="assets/images/info.svg" width="20" height="20" alt=""><span>Все поля обязательны для заполнения</span></p>
+        <p class="form-status" role="status"></p>
+      </form>
+
+      <form id="login-form" novalidate hidden>
+        <div class="field">
+          <label class="visually-hidden" for="login-email">Логин (email)</label>
+          <input id="login-email" name="email" type="email" placeholder="Email" autocomplete="username" required aria-describedby="login-email-error">
+          <small class="error" id="login-email-error"></small>
+        </div>
+        <div class="field">
+          <label class="visually-hidden" for="login-password">Пароль</label>
+          <input id="login-password" name="password" type="password" placeholder="Пароль" autocomplete="current-password" required aria-describedby="login-password-error">
+          <small class="error" id="login-password-error"></small>
+        </div>
+        <button class="submit-button" type="submit">Войти</button>
+        <p class="form-hint"><img src="assets/images/info.svg" width="20" height="20" alt=""><span>Все поля обязательны для заполнения</span></p>
+        <p class="form-status" role="status"></p>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>
