@@ -1,0 +1,378 @@
+/* Шрифт из макета хранится локально: интернет для запуска не нужен. */
+/* Подключаем три локальных начертания, чтобы браузер использовал шрифт из проекта. */
+@font-face {
+  font-family: Inter;
+  src: url("../../assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+/* weight должен соответствовать начертанию: 500 — Medium. */
+@font-face {
+  font-family: Inter;
+  src: url("../../assets/fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+/* 600 — полужирное начертание SemiBold. */
+@font-face {
+  font-family: Inter;
+  src: url("../../assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* padding и border входят в заданную ширину элемента. */
+/* Общие правила: единый расчёт размеров, типографика и вид клавиатурного фокуса. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: #0b061b;
+  font: 16px/1.25 Inter, sans-serif;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: #369fff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #369fff;
+  outline-offset: 4px;
+}
+[hidden] { display: none !important; } /* Скрытый атрибут не должен перебиваться display у других правил. */
+
+/* Общий контейнер центрирует три основные области и ограничивает ширину макета. */
+.container {
+  width: calc(100% - 80px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  /* Flex ставит логотип и навигацию в одну строку, края разводит space-between. */
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 105px;
+  padding-top: 32px;
+  border-bottom: 1px solid #ececec;
+}
+.logo {
+  /* Логотип и подпись располагаются рядом; gap задаёт расстояние между ними. */
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 600;
+}
+.logo:hover { text-decoration: none; }
+.logo img { display: block; }
+.auth-links {
+  /* Кнопки входа и регистрации стоят рядом с постоянным промежутком. */
+  display: flex;
+  gap: 30px;
+  padding-top: 10px;
+  font-weight: 500;
+}
+.text-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+.auth-links [data-open-form="login"] { color: #989898; }
+.text-button:hover { color: #369fff; }
+.gallery-heading {
+  /* Заголовок месяца и кнопка добавления располагаются по противоположным краям. */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 40px;
+}
+h1 {
+  /* У заголовка убран браузерный отступ, размер и высота строки взяты из макета. */
+  margin: 0;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 60px;
+}
+.add-button, .submit-button {
+  border: 0;
+  border-radius: 10px;
+  background: #369fff;
+  color: white;
+  font-weight: 600;
+}
+.add-button {
+  /* Значок и подпись внутри кнопки выравниваются по центру. */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  height: 60px;
+}
+/* Эти кнопки входят только в вёрстку первой лабораторной. */
+.add-button:disabled, .more-button:disabled { cursor: default; }
+
+/* Grid делит доступное место между одинаковыми колонками. */
+.cards {
+  /* Grid создаёт четыре колонки; minmax не позволяет содержимому раздвинуть колонку. */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.card {
+  /* Карточка служит квадратным окном для картинки и нижней подписи. */
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ececec;
+}
+.card > img {
+  /* Картинка покрывает всю карточку и сохраняет пропорции с обрезкой краёв. */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card::after {
+  /* Псевдоэлемент рисует градиент поверх фото, чтобы белая дата была читаема. */
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 72px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
+}
+.card time {
+  /* Дату накладываем на нижнюю часть карточки поверх градиента. */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  line-height: 15px;
+}
+.clock { display: none; }
+.more-button {
+  /* Кнопка показа следующих карточек растянута на ширину галереи. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 60px;
+  margin-top: 40px;
+  border: 2px solid #369fff;
+  border-radius: 10px;
+  background: white;
+  color: #369fff;
+  font-weight: 600;
+}
+.footer {
+  /* Контакт и подпись разработчика располагаются по краям подвала. */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding: 39px 0;
+  border-top: 1px solid #ececec;
+}
+
+/* dialog создаёт затемнение и поддерживает закрытие по Escape. */
+.modal {
+  /* Браузер центрирует dialog; max-width не даёт ему выйти за экран. */
+  width: 600px;
+  max-width: calc(100% - 40px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 20px;
+  color: #181818;
+}
+.modal::backdrop { background: rgba(0, 0, 0, 0.5); }
+/* ::backdrop — отдельный слой затемнения, который браузер создаёт для открытого dialog. */
+.modal-content {
+  /* При низком экране прокручивается содержимое окна, а не вся страница. */
+  max-height: calc(100vh - 80px);
+  padding: 40px;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+.close-button {
+  /* Крестик расположен относительно модального окна независимо от потока текста. */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.close-button img { display: block; }
+.form-switch {
+  /* Переключатели форм центрированы и имеют общий размер заголовка окна. */
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 39px;
+}
+.form-switch button { color: #b9b9b9; }
+.form-switch button.active { color: #181818; }
+
+/* Поля стоят в две колонки; имя и нижние элементы занимают всю строку. */
+form {
+  /* На широком окне поля образуют две равные колонки. */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+#register-form .field:first-child,
+.consent-field, .submit-button, .form-hint, .form-status {
+  grid-column: 1 / -1;
+}
+.field input {
+  /* Поле растягивается на колонку; padding отделяет текст от границ. */
+  width: 100%;
+  height: 60px;
+  padding: 0 18px;
+  border: 2px solid #b9b9b9;
+  border-radius: 10px;
+  background: white;
+  font-weight: 500;
+  outline: none;
+}
+.field input::placeholder { color: #b9b9b9; opacity: 1; }
+.field input:focus { border-color: #369fff; }
+.field input[aria-invalid="true"] { border-color: #f13a3a; }
+.error {
+  /* Текст ошибки всегда находится отдельной строкой под своим полем. */
+  display: block;
+  margin-top: 6px;
+  color: #d12727;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.error:empty { display: none; }
+.consent-field { margin-top: 10px; }
+.consent-label {
+  /* Флажок и текст согласия стоят рядом и выравниваются по верхнему краю. */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 20px;
+}
+.consent-label input {
+  /* Флажок не сжимается и сохраняет синий цвет системного элемента. */
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #369fff;
+}
+.submit-button {
+  /* Кнопка занимает всю строку формы и сохраняет высоту при переносе текста. */
+  width: 100%;
+  min-height: 60px;
+  padding: 12px;
+}
+#login-form .submit-button { margin-top: 10px; }
+.submit-button:hover { background: #258deb; }
+.submit-button:disabled {
+  background: rgba(54, 159, 255, 0.3);
+  cursor: default;
+}
+.form-hint {
+  /* Пояснение с иконкой располагается под кнопкой и центрируется. */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0 0;
+  color: #838383;
+  line-height: 20px;
+}
+.form-hint img { flex-shrink: 0; }
+.form-status {
+  margin: 0;
+  color: #216899;
+  font-size: 14px;
+}
+.form-status:empty { display: none; }
+.visually-hidden {
+  /* Подпись остаётся доступной скринридеру, но не занимает видимое место. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Планшет: три колонки. Четвёртая колонка макета переходит в нижний ряд. */
+@media (max-width: 1023px) {
+  /* Планшетный набор изменений действует только при ширине до 1023 px. */
+  h1 { font-size: 40px; }
+  .auth-links [data-open-form="login"] { color: inherit; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card:nth-child(4), .card:nth-child(8), .card:nth-child(12) { order: 1; }
+}
+
+/* Телефон: две колонки и один столбец полей формы. */
+@media (max-width: 600px) {
+  /* Мобильные изменения переопределяют desktop/tablet размеры и расположение. */
+  .container { width: calc(100% - 40px); }
+  .header { height: 81px; padding-top: 20px; }
+  .logo-text { display: none; }
+  .auth-links { padding-top: 9px; }
+  .gallery-heading { margin: 30px 0; gap: 10px; }
+  h1 { font-size: 36px; line-height: 44px; }
+  .add-button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .add-text { display: none; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .card { border-radius: 12px; order: 0; }
+  /* Порядок последних шести картинок повторяет мобильный макет. */
+  .card:nth-child(3) { order: 3; }
+  .card:nth-child(4), .card:nth-child(8) { order: 1; }
+  .card:nth-child(11) { order: 2; }
+  .card:nth-child(12) { order: 4; }
+  .card:nth-child(7) { order: 5; }
+  .card time {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    left: 10px;
+    bottom: 10px;
+    line-height: 16px;
+  }
+  .date-prefix { display: none; }
+  .clock { display: block; }
+  .more-button { height: 44px; margin-top: 30px; font-size: 14px; }
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px 0;
+  }
+  .footer span { color: #838383; }
+  .modal { width: 320px; max-width: 100%; }
+  .modal-content { padding: 20px; }
+  .close-button { top: -40px; }
+  .form-switch { gap: 24px; margin-bottom: 20px; font-size: 20px; line-height: 24px; }
+  form { grid-template-columns: 1fr; gap: 16px; }
+  .consent-label { justify-content: flex-start; }
+  .form-hint { justify-content: flex-start; }
+}
