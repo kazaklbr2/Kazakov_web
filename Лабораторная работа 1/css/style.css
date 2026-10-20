@@ -98,9 +98,18 @@ h1 {
   gap: 10px;
   padding: 0 20px;
   height: 60px;
+  cursor: pointer;
 }
-/* Эти кнопки входят только в вёрстку первой лабораторной. */
-.add-button:disabled, .more-button:disabled { cursor: default; }
+/* При нажатии кнопка становится белой с синей рамкой, как в макете. */
+.add-button:active {
+  border: 2px solid #369fff;
+  background: white;
+  color: #369fff;
+}
+/* Значок — внешний SVG чёрного цвета; фильтр окрашивает его в синий при нажатии. */
+.add-button:active img {
+  filter: brightness(0) saturate(100%) invert(54%) sepia(100%) saturate(1641%) hue-rotate(183deg) brightness(102%) contrast(101%);
+}
 
 /* Grid делит доступное место между одинаковыми колонками. */
 .cards {
@@ -153,6 +162,12 @@ h1 {
   background: white;
   color: #369fff;
   font-weight: 600;
+}
+.more-button:hover {
+  border-color: #258deb;
+  background: #eef7ff;
+  color: #258deb;
+  cursor: pointer;
 }
 .footer {
   display: flex;
