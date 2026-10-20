@@ -22,9 +22,15 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
+  /* Минимальная высота окна и колонка позволяют прижать footer к низу. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   color: #0b061b;
   font: 16px/1.25 Inter, sans-serif;
 }
+/* Основное содержимое занимает свободное место, если карточек мало или нет. */
+main { flex: 1; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: #369fff; text-decoration: none; }
@@ -190,9 +196,8 @@ h1 {
 }
 .modal::backdrop { background: rgba(0, 0, 0, 0.5); }
 .modal-content {
-  max-height: calc(100vh - 80px);
+  /* Высота содержимого свободная; внутреннюю прокрутку для формы не создаём. */
   padding: 40px;
-  overflow-y: auto;
   border-radius: 20px;
 }
 .close-button {
@@ -366,10 +371,27 @@ form {
   }
   .footer span { color: #838383; }
   .modal { width: 320px; max-width: 100%; }
-  .modal-content { padding: 20px; }
-  .close-button { top: -40px; }
-  .form-switch { gap: 24px; margin-bottom: 20px; font-size: 20px; line-height: 24px; }
-  form { grid-template-columns: 1fr; gap: 16px; }
+  /* Компактные размеры позволяют видеть форму целиком на телефоне. */
+  .modal-content { padding: 16px; }
+  .close-button { top: -30px; }
+  .form-switch { gap: 24px; margin-bottom: 12px; font-size: 20px; line-height: 24px; }
+  form { grid-template-columns: 1fr; gap: 8px; }
+  .field input { height: 44px; padding: 0 12px; }
+  .error { margin-top: 3px; font-size: 11px; line-height: 1.2; }
+  .consent-field { margin-top: 0; }
+  .submit-button { min-height: 44px; padding: 8px 12px; }
+  #login-form .submit-button { margin-top: 0; }
+  .form-hint { margin-top: 0; font-size: 12px; line-height: 16px; }
   .consent-label { justify-content: flex-start; }
   .form-hint { justify-content: flex-start; }
+}
+
+/* При низком окне дополнительно уменьшаем вертикальные отступы формы. */
+@media (max-height: 520px) {
+  .modal-content { padding: 12px; }
+  .form-switch { margin-bottom: 8px; font-size: 18px; line-height: 22px; }
+  form { gap: 6px; }
+  .field input { height: 36px; }
+  .submit-button { min-height: 36px; }
+  .form-hint { font-size: 11px; line-height: 14px; }
 }
