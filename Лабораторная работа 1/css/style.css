@@ -384,15 +384,18 @@ form {
   .field input { height: 44px; padding: 0 12px; }
   .error { margin-top: 3px; font-size: 11px; line-height: 1.2; }
   .consent-field {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-items: center;
     margin-top: 0;
   }
   .submit-button { min-height: 44px; padding: 8px 12px; }
   #login-form .submit-button { margin-top: 0; }
   .form-hint { margin-top: 0; font-size: 12px; line-height: 16px; }
-  .consent-label { align-self: center; justify-content: center; }
+  #register-form .consent-label {
+    justify-self: center;
+    margin-inline: auto;
+    justify-content: center;
+  }
   .form-hint { justify-content: flex-start; }
 }
 
