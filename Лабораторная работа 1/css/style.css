@@ -257,12 +257,13 @@ form {
 .consent-field { margin-top: 10px; }
 .consent-label {
   display: flex;
+  flex-direction: row;
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   line-height: 20px;
   text-align: center;
 }
