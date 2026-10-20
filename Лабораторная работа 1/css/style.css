@@ -382,7 +382,7 @@ form {
   .submit-button { min-height: 44px; padding: 8px 12px; }
   #login-form .submit-button { margin-top: 0; }
   .form-hint { margin-top: 0; font-size: 12px; line-height: 16px; }
-  .consent-label { justify-content: flex-start; }
+  .consent-label { justify-content: center; }
   .form-hint { justify-content: flex-start; }
 }
 
