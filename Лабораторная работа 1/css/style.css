@@ -258,11 +258,25 @@ form {
   line-height: 20px;
 }
 .consent-label input {
+  appearance: none;
+  display: grid;
+  place-content: center;
   flex-shrink: 0;
   width: 20px;
   height: 20px;
   margin: 0;
-  accent-color: #369fff;
+  border: 1px solid #b9b9b9;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+.consent-label input:checked {
+  border-color: #369fff;
+  background: #369fff url("../assets/images/checkbox-checked.svg") center / 20px 20px no-repeat;
+}
+.consent-label input:focus-visible {
+  outline: 2px solid #369fff;
+  outline-offset: 2px;
 }
 .submit-button {
   width: 100%;
